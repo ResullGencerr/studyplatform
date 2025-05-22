@@ -83,7 +83,7 @@ const LiveRoom = () => {
       },
       interfaceConfigOverwrite: {
         TOOLBAR_BUTTONS: isModerator
-          ? ["microphone", "camera", "desktop", "livestreaming", "recording", "tileview", "hangup"]
+          ? ["microphone", "camera", "desktop","chat", "livestreaming", "recording", "tileview", "hangup"]
           : ["microphone", "camera", "chat", "tileview", "raisehand", "hangup"],
         SHOW_JITSI_WATERMARK: false,
         SHOW_WATERMARK_FOR_GUESTS: false,
