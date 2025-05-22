@@ -1,5 +1,5 @@
 //const BASE_URL = "http://localhost:5000/api/v1";
-const BASE_URL = "https://studyplatform-szz6.onrender.com";
+const BASE_URL = "https://studyplatform-szz6.onrender.com/api/v1";
 
 // AUTH ENDPOINTS
 export const endpoints = {
