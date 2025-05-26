@@ -6,7 +6,7 @@ const Course = require('../models/course');
 const { uploadImageToCloudinary, deleteResourceFromCloudinary } = require('../utils/imageUploader');
 const { convertSecondsToDuration } = require('../utils/secToDuration');
 
-// ================ Profil Güncelle ================
+
 exports.updateProfile = async (req, res) => {
   try {
     const { gender = '', dateOfBirth = '', about = '', contactNumber = '', firstName, lastName } = req.body;
@@ -43,7 +43,6 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-// ================ Hesap Sil ================
 exports.deleteAccount = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -81,7 +80,7 @@ exports.deleteAccount = async (req, res) => {
   }
 };
 
-// ================ Kullanıcı Bilgilerini Getir ================
+
 exports.getUserDetails = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -102,7 +101,7 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-// ================ Profil Fotoğrafı Güncelle ================
+
 exports.updateUserProfileImage = async (req, res) => {
   try {
     const profileImage = req.files?.profileImage;
@@ -131,7 +130,7 @@ exports.updateUserProfileImage = async (req, res) => {
   }
 };
 
-// ================ Kayıtlı Kursları Getir ================
+
 exports.getEnrolledCourses = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -199,7 +198,6 @@ exports.getEnrolledCourses = async (req, res) => {
   }
 };
 
-// ================ Eğitmen Dashboard ================
 exports.instructorDashboard = async (req, res) => {
   try {
     const courseDetails = await Course.find({ instructor: req.user.id });

@@ -2,7 +2,6 @@ const Category = require("../models/category");
 const mongoose = require("mongoose");
 const Course = require("../models/course");
 
-// Rastgele sayı üret (diğer kategoriler için)
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -35,7 +34,7 @@ exports.createCategory = async (req, res) => {
   }
 };
 
-// ================ Tüm Kategorileri Getir ================
+
 exports.showAllCategories = async (req, res) => {
   try {
     const allCategories = await Category.find({}, { name: true, description: true });
@@ -55,7 +54,6 @@ exports.showAllCategories = async (req, res) => {
   }
 };
 
-// ================ Kategori Sayfa Detaylarını Getir ================
 exports.getCategoryPageDetails = async (req, res) => {
   try {
     const categoryId = req.body.categoryId?.trim();
@@ -95,7 +93,7 @@ exports.getCategoryPageDetails = async (req, res) => {
       });
     }
 
-    // Farklı bir kategoriyi rastgele seç
+   
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     });

@@ -1,12 +1,10 @@
-const { eventNames } = require("../../models/section");
-
 const otpTemplate = (otp, name) => {
 	return `<!DOCTYPE html>
 	<html>
 	
 	<head>
 		<meta charset="UTF-8">
-		<title>OTP Verification Email</title>
+		<title>OTP Doğrulama E-postası</title>
 		<style>
 			body {
 				background-color: #ffffff;
@@ -25,11 +23,7 @@ const otpTemplate = (otp, name) => {
 				text-align: center;
 			}
 	
-			.logo {
-				max-width: 200px;
-				margin-bottom: 20px;
-			}
-	
+			
 			.message {
 				font-size: 18px;
 				font-weight: bold;
@@ -68,19 +62,18 @@ const otpTemplate = (otp, name) => {
 	
 	<body>
 		<div class="container">
-			<a href=""><img class="logo"
-					src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
-			<div class="message">OTP Verification Email</div>
+			
+			<div class="message">OTP Doğrulama E-postası</div>
 			<div class="body">
-				<p>Dear ${name}</p>
-				<p>Thank you for registering with StudyNotion. To complete your registration, please use the following OTP
-					(One-Time Password) to verify your account:</p>
+				<p>Merhaba ${name},</p>
+				<p>StudyNotion platformuna kaydolduğunuz için teşekkür ederiz. Kaydınızı tamamlamak için aşağıdaki OTP'yi (Tek Kullanımlık Şifre) kullanarak hesabınızı doğrulayabilirsiniz:</p>
 				<h2 class="highlight">${otp}</h2>
-				<p>This OTP is valid for 3 minutes. If you did not request this verification, please disregard this email.
-				Once your account is verified, you will have access to our platform and its features.</p>
+				<p>Bu OTP 3 dakika boyunca geçerlidir. Bu doğrulama isteğini siz yapmadıysanız, bu e-postayı dikkate almayınız.
+				Hesabınız doğrulandıktan sonra platformumuza ve özelliklerine erişebileceksiniz.</p>
 			</div>
-			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:gadeaniruddha2@gmail.com">gadeaniruddha2@gmail.com</a>. We are here to help!</div>
+			<div class="support">Herhangi bir sorunuz varsa veya yardıma ihtiyaç duyarsanız, lütfen bizimle iletişime geçin: 
+				<a href="mailto:denemee111deneme@gmail.com">denemee111deneme@gmail.com</a>. Yardımcı olmaktan memnuniyet duyarız!
+			</div>
 		</div>
 	</body>
 	

@@ -4,7 +4,6 @@ const { uploadImageToCloudinary } = require('../utils/imageUploader');
 
 
 
-// ================ create SubSection ================
 exports.createSubSection = async (req, res) => {
     try {
         // extract data
@@ -57,7 +56,6 @@ exports.createSubSection = async (req, res) => {
 
 
 
-// ================ Update SubSection ================
 exports.updateSubSection = async (req, res) => {
     try {
         const { sectionId, subSectionId, title, description } = req.body;
@@ -121,7 +119,7 @@ exports.updateSubSection = async (req, res) => {
 
 
 
-// ================ Delete SubSection ================
+
 exports.deleteSubSection = async (req, res) => {
     try {
         const { subSectionId, sectionId } = req.body

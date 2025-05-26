@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-// DB ve Cloud bağlantılarını başlat
+
 connectDB();
 cloudinaryConnect();
 
@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
     </div>`);
 });
 
-// HTTP server ve Socket başlat
+
 const server = http.createServer(app); // <- BU önemli
 const io = setupSocket(server); // ✅ io burada geliyor!// <- SOCKET buraya bağlanıyor
 app.set("io", io);

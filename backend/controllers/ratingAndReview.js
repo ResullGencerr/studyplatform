@@ -3,7 +3,7 @@ const Course = require('../models/course')
 const RatingAndReview = require('../models/ratingAndReview')
 const mongoose = require('mongoose');
 
-// ================ Create Rating ================
+
 exports.createRating = async (req, res) => {
     try {
         // get data
@@ -84,7 +84,7 @@ exports.createRating = async (req, res) => {
 
 
 
-// ================ Get Average Rating ================
+
 exports.getAverageRating = async (req, res) => {
     try {
             //get course ID
@@ -135,7 +135,7 @@ exports.getAverageRating = async (req, res) => {
 
 
 
-// ================ Get All Rating And Reviews ================
+
 exports.getAllRatingReview = async(req, res)=>{
     try{
         const allReviews = await RatingAndReview.find({})

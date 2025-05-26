@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 require("dotenv").config();
 
-// ================ AUTH ================
+
 exports.auth = async (req, res, next) => {
   try {
     const token =
@@ -47,7 +47,7 @@ exports.auth = async (req, res, next) => {
   }
 };
 
-// ================ IS STUDENT ================
+
 exports.isStudent = (req, res, next) => {
   try {
     if (req.user?.accountType !== "Student") {
@@ -66,7 +66,7 @@ exports.isStudent = (req, res, next) => {
   }
 };
 
-// ================ IS INSTRUCTOR ================
+
 exports.isInstructor = (req, res, next) => {
   try {
     if (req.user?.accountType !== "Instructor") {
@@ -85,7 +85,7 @@ exports.isInstructor = (req, res, next) => {
   }
 };
 
-// ================ IS ADMIN ================
+
 exports.isAdmin = (req, res, next) => {
   try {
     if (req.user?.accountType !== "Admin") {

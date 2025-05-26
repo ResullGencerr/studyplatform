@@ -16,14 +16,6 @@ const LiveRoom = () => {
   const navigate = useNavigate();
   const userToken = useSelector((state) => state.auth.token);
 
-  const isCurrentUserModerator = (() => {
-    try {
-      const decoded = jwtDecode(jitsiToken);
-      return decoded?.moderator === true;
-    } catch {
-      return false;
-    }
-  })();
 
   useEffect(() => {
     if (!jitsiToken || !roomId) {
@@ -52,7 +44,7 @@ const LiveRoom = () => {
 
     verifySession();
 
-    const domain = "meet.enpoint.com.tr";
+    const domain = import.meta.env.VITE_JITSI_DOMAIN;
     let isModerator = false;
     let displayName = "Kullanıcı";
 
@@ -128,37 +120,11 @@ const LiveRoom = () => {
     };
   }, [roomId, jitsiToken, navigate, userToken]);
 
-  const handleEndClass = async () => {
-    try {
-      const courseId = roomId.replace("course-", "");
-      if (!userToken) {
-        alert("Kullanıcı token'ı bulunamadı.");
-        return;
-      }
-
-      const res = await endLiveClassAPI(courseId, userToken);
-      if (res?.message) {
-        socket.emit("END_LIVE_CLASS", { roomId });
-        alert("Ders sona erdi.");
-        navigate("/dashboard/my-profile");
-      }
-    } catch (err) {
-      console.error("❌ Dersi bitirme hatası:", err);
-      alert("Ders bitirilemedi.");
-    }
-  };
-
+ 
   return (
     <div className="relative h-screen w-screen">
       <div ref={containerRef} className="h-full w-full" />
-      {isCurrentUserModerator && (
-        <button
-          onClick={handleEndClass}
-          className="absolute top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg hover:bg-red-700 transition"
-        >
-          Dersi Bitir
-        </button>
-      )}
+    
     </div>
   );
 };

@@ -16,10 +16,10 @@ const {
 } = require("../utils/imageUploader");
 const { convertSecondsToDuration } = require("../utils/secToDuration");
 
-// ================ create new course ================
+
 exports.createCourse = async (req, res) => {
   try {
-    // 1. Verileri al
+  
     const {
       courseName,
       courseDescription,
@@ -35,13 +35,13 @@ exports.createCourse = async (req, res) => {
       scheduleDuration,
     } = req.body;
 
-    // 2. String verileri parse et
+
     const tag = JSON.parse(_tag || "[]");
     const instructions = JSON.parse(_instructions || "[]");
 
     const liveClass = _liveClass === "true" || _liveClass === true;
 
-    // 3. Thumbnail yükle
+   
     const thumbnail = req.files?.thumbnailImage;
     if (!thumbnail) {
       return res.status(400).json({
@@ -54,7 +54,6 @@ exports.createCourse = async (req, res) => {
       process.env.FOLDER_NAME
     );
 
-    // 4. Canlı ders bilgilerini oluştur
     let liveSchedule = undefined;
     if (liveClass) {
       const days = JSON.parse(scheduleDays || "[]");
@@ -75,7 +74,7 @@ exports.createCourse = async (req, res) => {
       };
     }
 
-    // 5. Zorunlu alan kontrolü
+ 
     if (
       !courseName ||
       !courseDescription ||
@@ -91,7 +90,6 @@ exports.createCourse = async (req, res) => {
       });
     }
 
-    // 6. Kategoriyi doğrula
     const categoryDetails = await Category.findById(category);
     if (!categoryDetails) {
       return res.status(404).json({
@@ -100,7 +98,7 @@ exports.createCourse = async (req, res) => {
       });
     }
 
-    // 7. Kursu oluştur
+   
     const instructorId = req.user.id;
     const status = rawStatus || "Draft";
 
@@ -121,14 +119,13 @@ exports.createCourse = async (req, res) => {
       createdAt: Date.now(),
     });
 
-    // 8. Eğitmene kursu ekle
     await User.findByIdAndUpdate(
       instructorId,
       { $push: { courses: newCourse._id } },
       { new: true }
     );
 
-    // 9. Kategoriye kursu ekle
+   
     await Category.findByIdAndUpdate(
       categoryDetails._id,
       { $push: { courses: newCourse._id } },
@@ -151,7 +148,6 @@ exports.createCourse = async (req, res) => {
   }
 };
 
-// ================ show all courses ================
 exports.getAllCourses = async (req, res) => {
   try {
     const allCourses = await Course.find(
@@ -188,7 +184,7 @@ exports.getAllCourses = async (req, res) => {
   }
 };
 
-// ================ Get Course Details ================
+
 exports.getCourseDetails = async (req, res) => {
   try {
     // get course ID
@@ -242,7 +238,6 @@ exports.getCourseDetails = async (req, res) => {
 
     const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
 
-    //return response
     return res.status(200).json({
       success: true,
       data: {
@@ -262,7 +257,6 @@ exports.getCourseDetails = async (req, res) => {
   }
 };
 
-// ================ Get Full Course Details ================
 exports.getFullCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body;
@@ -338,7 +332,7 @@ exports.getFullCourseDetails = async (req, res) => {
   }
 };
 
-// ================ Edit Course Details ================
+
 exports.editCourse = async (req, res) => {
   try {
     const { courseId } = req.body;
@@ -412,7 +406,7 @@ exports.editCourse = async (req, res) => {
   }
 };
 
-// ================ Get a list of Course for a given Instructor ================
+
 exports.getInstructorCourses = async (req, res) => {
   try {
     // Get the instructor ID from the authenticated user or request body
@@ -440,7 +434,7 @@ exports.getInstructorCourses = async (req, res) => {
   }
 };
 
-// ================ Delete the Course ================
+
 exports.deleteCourse = async (req, res) => {
   try {
     const { courseId } = req.body;

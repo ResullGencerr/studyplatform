@@ -9,7 +9,7 @@ function setupSocket(server) {
   });
 
   io.on("connection", (socket) => {
-    // Kullanıcı socket'e bağlandığında
+    
     socket.on("REGISTER_SESSION", ({ sessionId }) => {
       if (sessionId) {
         socket.join(sessionId); // odasına kat

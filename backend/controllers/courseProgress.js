@@ -4,7 +4,7 @@ const SubSection = require("../models/subSection")
 const CourseProgress = require("../models/courseProgress")
 
 
-// ================ update Course Progress ================
+
 exports.updateCourseProgress = async (req, res) => {
   const { courseId, subsectionId } = req.body
   const userId = req.user.id

@@ -4,7 +4,6 @@ import { resetCart } from "../../slices/cartSlice";
 import { setUser } from "../../slices/profileSlice";
 import { apiConnector } from "../apiConnector";
 import { endpoints } from "../apis";
-import socket from "../socket/socket";
 
 const {
   SENDOTP_API,

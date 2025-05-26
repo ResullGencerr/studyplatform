@@ -1,7 +1,7 @@
 const Course = require('../models/course');
 const Section = require('../models/section');
 
-// ================ create Section ================
+
 exports.createSection = async (req, res) => {
     try {
         // extract data 
@@ -59,7 +59,7 @@ exports.createSection = async (req, res) => {
 }
 
 
-// ================ update Section ================
+
 exports.updateSection = async (req, res) => {
     try {
         // extract data
@@ -103,7 +103,7 @@ exports.updateSection = async (req, res) => {
 
 
 
-// ================ Delete Section ================
+
 exports.deleteSection = async (req, res) => {
     try {
         const { sectionId, courseId } = req.body;

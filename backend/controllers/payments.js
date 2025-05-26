@@ -13,7 +13,7 @@ const CourseProgress = require("../models/courseProgress");
 
 const { default: mongoose } = require("mongoose");
 
-// ================ capture the payment and Initiate the 'Rajorpay order' ================
+
 exports.capturePayment = async (req, res) => {
   const { coursesId } = req.body;
   const userId = req.user.id;
@@ -24,7 +24,7 @@ exports.capturePayment = async (req, res) => {
       .json({ success: false, message: "Lütfen kurs ID(lerini) gönderin." });
   }
 
-  // Sahte bir "sipariş" cevabı dön
+
   return res.status(200).json({
     success: true,
     message: {
@@ -35,7 +35,7 @@ exports.capturePayment = async (req, res) => {
   });
 };
 
-// ================ verify the payment ================
+
 exports.verifyPayment = async (req, res) => {
   const { coursesId } = req.body;
   const userId = req.user.id;
@@ -64,7 +64,7 @@ exports.verifyPayment = async (req, res) => {
   }
 };
 
-// ================ enroll Students to course after payment ================
+
 const enrollStudents = async (courses, userId, res) => {
   if (!courses || !userId) {
     return res.status(400).json({
@@ -97,7 +97,7 @@ const enrollStudents = async (courses, userId, res) => {
         completedVideos: [],
       });
 
-      // Find the student and add the course to their list of enrolled courses
+  
       const enrolledStudent = await User.findByIdAndUpdate(
         userId,
         {
@@ -111,7 +111,7 @@ const enrollStudents = async (courses, userId, res) => {
 
       // console.log("Enrolled student: ", enrolledStudent)
 
-      // Send an email notification to the enrolled student
+
       const emailResponse = await mailSender(
         enrolledStudent.email,
         `Successfully Enrolled into ${enrolledCourse.courseName}`,
@@ -140,7 +140,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   }
 
   try {
-    // find student
+    
     const enrolledStudent = await User.findById(userId);
     await mailSender(
       enrolledStudent.email,
@@ -160,7 +160,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   }
 };
 
-// ================ verify Signature ================
+
 // exports.verifySignature = async (req, res) => {
 //     const webhookSecret = '12345678';
 

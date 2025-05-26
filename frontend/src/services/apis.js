@@ -1,5 +1,5 @@
-//const BASE_URL = "http://localhost:5000/api/v1";
-const BASE_URL = "https://studyplatform-szz6.onrender.com/api/v1";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
 // AUTH ENDPOINTS
 export const endpoints = {
